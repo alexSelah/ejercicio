@@ -1,0 +1,198 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* BARRA DE PROGRESO SUPERIOR */
+#barra-progreso-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #333; z-index: 100;
+}
+#barra-progreso-relleno {
+    height: 100%; background: #4CAF50; width: 0%; transition: width 0.5s ease;
+}
+
+/* CONTENEDOR PRINCIPAL */
+#configuracion, #temporizador {
+    width: 100%; max-width: 700px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-top: 15px;
+}
+
+h1 { color: #4CAF50; text-align: center; margin-top: 0; }
+h3 { color: #ddd; border-bottom: 1px solid #333; padding-bottom: 5px; }
+.hidden { display: none !important; }
+
+/* Controles Generales */
+.control-general { background: #252525; padding: 15px; border-radius: 8px; margin-bottom: 20px;}
+.inputs-tiempo { display: flex; gap: 15px; }
+label { font-size: 0.8em; color: #aaa; display: block; width: 100%; margin-bottom: 3px; }
+input[type="text"], select { 
+    width: 100%; padding: 8px; background: #333; border: 1px solid #444; 
+    color: white; border-radius: 5px; box-sizing: border-box;
+}
+
+/* LISTA DE EJERCICIOS */
+.ejercicio-item {
+    background: #2a2a2a; border-left: 4px solid #4CAF50;
+    padding: 10px; margin-bottom: 8px; border-radius: 4px;
+    display: grid; grid-template-columns: 1fr 55px 55px auto; 
+    align-items: center; gap: 5px;
+}
+.ejercicio-item.type-tabata { border-left-color: #FF5722; }
+.ejercicio-item.type-piramide { border-left-color: #FFC107; }
+.ejercicio-item.type-superset { border-left-color: #2196F3; }
+
+.ejercicio-info { overflow: hidden; } 
+.ejercicio-info h4 { margin: 0; font-size: 1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ejercicio-info span { 
+    font-size:0.6em; text-transform:uppercase; background:#444; 
+    padding:1px 4px; border-radius:3px; color:#aaa; margin-left: 5px; vertical-align: middle;
+}
+
+/* MINI INPUTS */
+.mini-input-group { display: flex; flex-direction: column; align-items: center; }
+.mini-input-group label { font-size: 0.65em; color: #888; margin-bottom: 2px; text-align: center; }
+.mini-input-group input {
+    width: 100%; padding: 5px 0; background: #111; border: 1px solid #444;
+    color: #fff; text-align: center; font-weight: bold; font-size: 1em; border-radius: 4px;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* Botones Standard */
+.btn-principal, .btn-secundario, .btn-eliminar, .btn-importar {
+    width: 100%; padding: 15px; border: none; border-radius: 8px;
+    font-size: 1.2em; font-weight: bold; cursor: pointer; margin-top: 10px; color: white;
+}
+.btn-principal { background-color: #4CAF50; }
+.btn-secundario { background-color: #007BFF; }
+.btn-importar { background-color: #607D8B; font-size: 1em; padding: 12px;} /* Color gris azulado */
+
+.btn-eliminar { 
+    background-color: #DC3545; font-size: 0.9em; padding: 8px 12px; 
+    width: auto; margin: 0; height: 35px; display: flex; align-items: center;
+}
+
+/* === MODAL IMPORTAR === */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 200;
+    display: flex; justify-content: center; align-items: center;
+}
+.modal-content {
+    background: #252525; padding: 20px; border-radius: 10px;
+    width: 90%; max-width: 500px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+.modal-content textarea {
+    width: 100%; height: 200px; background: #111; color: #fff;
+    border: 1px solid #444; padding: 10px; font-family: monospace; font-size: 0.9em;
+    border-radius: 5px; resize: vertical; margin-bottom: 10px;
+}
+.modal-buttons { display: flex; gap: 10px; justify-content: flex-end; }
+
+
+/* === NOTAS TÉCNICAS (Accordion) === */
+#contenedor-notas {
+    text-align: center; margin-bottom: 15px;
+}
+.btn-toggle-small {
+    background: none; border: 1px solid #444; color: #aaa;
+    padding: 5px 15px; border-radius: 20px; font-size: 0.8em; cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-toggle-small:hover { border-color: #fff; color: #fff; }
+.caja-notas {
+    background: #333; color: #ddd;
+    padding: 10px; margin-top: 10px; border-radius: 5px;
+    font-size: 0.9em; font-style: italic; line-height: 1.4;
+    border-left: 3px solid #FFC107; text-align: left;
+}
+
+
+/* === NUEVOS BOTONES TIMER === */
+.contenedor-botones-timer {
+    display: flex; flex-direction: column; gap: 20px; margin-top: 10px;
+}
+.btn-gigante {
+    width: 100%; padding: 30px; background-color: #4CAF50;
+    color: white; font-size: 1.8em; font-weight: bold;
+    border: none; border-radius: 12px; cursor: pointer;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+    transition: transform 0.1s;
+}
+.btn-gigante:active { transform: scale(0.98); }
+
+.btn-cancelar-timer {
+    width: 100%; padding: 12px; background-color: #d32f2f; 
+    color: #ffcccc; font-size: 1em; border: none; border-radius: 8px; cursor: pointer; opacity: 0.8;
+}
+
+.controles-add { display: flex; gap: 10px; margin-top: 20px; }
+#tipo-nuevo-ejercicio { width: 70%; }
+#btn-add-ejercicio { width: 30%; margin-top: 0; font-size: 1em; padding: 10px; }
+
+
+/* --- TEMPORIZADOR VISUAL --- */
+#info-header {
+    text-align: center; margin-bottom: 25px;
+    background: #252525; padding: 15px 10px;
+    border-radius: 8px; border: 1px solid #333;
+}
+#progreso-texto {
+    color: #aaa; font-size: 1.1em; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 2px;
+    display: block; margin-bottom: 8px;
+}
+#nombre-ejercicio-actual {
+    margin: 0; font-size: 2.2em; color: #ffffff;
+    line-height: 1.1; text-transform: uppercase;
+}
+
+/* EL CÍRCULO DEL RELOJ */
+#display-container {
+    background: #000; border-radius: 50%; width: 260px; height: 260px;
+    flex-shrink: 0; aspect-ratio: 1 / 1; 
+    margin: 0 auto 20px; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    border: 8px solid #333; transition: border-color 0.3s;
+}
+#timer-label { font-size: 1.4em; color: #aaa; text-transform: uppercase; margin-bottom: 5px; }
+#display-principal { font-size: 4.5em; font-weight: bold; font-variant-numeric: tabular-nums; color: white; }
+
+/* --- DETALLE DE SERIES Y REPS --- */
+#contenedor-info-detalle { text-align: center; margin-bottom: 10px; min-height: 3em; }
+#info-detalle { font-size: 1.5em; color: #ddd; font-weight: bold; margin-bottom: 5px; }
+#info-reps { font-size: 1.5em; color: #4CAF50; font-weight: bold; }
+
+/* --- INFO SIGUIENTE EJERCICIO --- */
+#info-siguiente-ejercicio {
+    text-align: center; color: #FFC107; font-size: 1.1em; font-style: italic;
+    margin-bottom: 20px; min-height: 1.2em; border-top: 1px solid #333; padding-top: 10px;
+}
+
+/* ESTADOS DEL TIMER */
+.estado-neutro { border-color: #555; }
+.estado-trabajo { border-color: #4CAF50 !important; }
+.estado-descanso { border-color: #007BFF !important; }
+.estado-tabata-work { border-color: #FF5722 !important; }
+.estado-tabata-rest { border-color: #FFC107 !important; }
+
+@media (max-width: 400px) {
+    .ejercicio-item { padding: 8px; gap: 3px; grid-template-columns: 1fr 45px 45px auto; }
+    #display-container { width: 220px; height: 220px; border-width: 6px;}
+    #display-principal { font-size: 3.5em; }
+    #nombre-ejercicio-actual { font-size: 1.6em; } 
+    #info-detalle { font-size: 1.2em; }
+    #info-reps { font-size: 1.2em; }
+    .btn-gigante { padding: 20px; font-size: 1.5em; } 
+}
