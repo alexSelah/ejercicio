@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desencadenado Timer Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="barra-progreso-container" class="hidden">
+        <div id="barra-progreso-relleno"></div>
+    </div>
+
+    <div id="configuracion">
+        <h1>🔥 Rutina Desencadenada</h1>
+
+        <div class="control-general">
+            <h3>Tiempos Generales (Normal/Superset)</h3>
+            <div class="inputs-tiempo">
+                <label>
+                    Descanso Series:
+                    <input type="text" id="descanso-series" value="01:00" placeholder="mm:ss">
+                </label>
+                <label>
+                    Descanso Ejercicios:
+                    <input type="text" id="descanso-ejercicios" value="02:00" placeholder="mm:ss">
+                </label>
+            </div>
+        </div>
+
+        <h3>Lista de Ejercicios</h3>
+        <div id="lista-ejercicios">
+            </div>
+        
+        <div class="controles-add">
+            <select id="tipo-nuevo-ejercicio">
+                <option value="normal">Normal</option>
+                <option value="superset">Superset</option>
+                <option value="tabata">Tabata</option>
+                <option value="piramide">Pirámide</option>
+            </select>
+            <button id="btn-add-ejercicio" class="btn-secundario">+ Añadir</button>
+        </div>
+
+        <button id="btn-abrir-importar" class="btn-importar" style="margin-top:15px;">📥 Importar Rutina desde Texto</button>
+
+        <hr>
+        
+        <button id="btn-comenzar" class="btn-principal">¡COMENZAR!</button>
+        <button id="btn-reset-storage" class="btn-eliminar" style="margin-top:30px; font-size:0.8em;">Borrar Datos Guardados</button>
+    </div>
+
+    <div id="temporizador" class="hidden">
+        
+        <div id="info-header">
+            <span id="progreso-texto">EJERCICIO 1 / 4</span>
+            <h2 id="nombre-ejercicio-actual">PREPARADO</h2>
+        </div>
+        
+        <div id="display-container" class="estado-neutro">
+            <div id="timer-label">LISTO</div>
+            <div id="display-principal">00:00</div>
+        </div>
+
+        <div id="contenedor-info-detalle">
+            <div id="info-detalle">--</div>
+            <div id="info-reps">--</div>
+        </div>
+
+        <div id="contenedor-notas" class="hidden">
+            <button id="btn-toggle-notas" class="btn-toggle-small">💡 Ver Notas Técnicas</button>
+            <div id="texto-notas" class="caja-notas hidden">
+                </div>
+        </div>
+
+        <div id="info-siguiente-ejercicio">Siguiente: ...</div>
+
+        <div class="contenedor-botones-timer">
+            <button id="btn-accion" class="btn-gigante">¡HECHO!</button>
+            <button id="btn-finalizar" class="btn-cancelar-timer">Cancelar Rutina</button>
+        </div>
+    </div>
+
+    <div id="modal-importar" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Pegar Rutina (CSV)</h3>
+            <p style="font-size:0.8em; color:#aaa; margin-bottom:10px;">Formato: TIPO;Nombre;Series;Reps;[Comentario opcional]</p>
+            <textarea id="texto-importar" placeholder="NORMAL;Flexiones;3;12;[Espalda recta]..."></textarea>
+            <div class="modal-buttons">
+                <button id="btn-procesar-importacion" class="btn-principal" style="font-size:1em;">Cargar</button>
+                <button id="btn-cerrar-modal" class="btn-cancelar-timer" style="width:auto;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio-start-ejercicio" src="https://www.myinstants.com/media/sounds/campana-de-box.mp3" preload="auto"></audio>
+    <audio id="audio-start-descanso" src="https://www.myinstants.com/media/sounds/whatsapp-audio-2020-05-14-at-14_ATbxHcG.mp3" preload="auto"></audio>
+    <audio id="audio-start-serie" src="https://www.myinstants.com/media/sounds/campana_aoe_N0mNyIy.mp3" preload="auto"></audio>
+    <audio id="audio-beep" src="https://www.myinstants.com/media/sounds/beep-short.mp3" preload="auto"></audio>
+    <audio id="audio-tabata-rest" src="https://www.myinstants.com/media/sounds/correct.mp3" preload="auto"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
