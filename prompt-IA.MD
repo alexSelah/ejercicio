@@ -15,9 +15,9 @@ Crea una tabla lista para copiar y pegar con estas columnas exactas:
 Genera un bloque de código (sin formato de lenguaje específico) con esta estructura exacta para procesado de datos (`separado por punto y coma`):
 `TIPO;Nombre_Ejercicio;Series;Repeticiones;[Instruccion_Corta]`
 *Reglas para el código:*
-Solo puedes usar una de estas cuatro opciones: Normal (sera la mas frecuente), Super-Serie, Piramide y Tabata
+Solo puedes usar una de estas cuatro opciones: Normal (sera la mas frecuente), Super-Serie, Piramide, Regresiva y Tabata
 - **Tabata:** Series = `8` (intervalos), Reps = `-` (implícito 20s/10s).
 - **Superset:** Nombre = `Ejercio A / Ejercicio B`, Reps = `10/10`.
 - **Pirámide:** Series = `Minutos totales`, Reps = `-`.
 - **Normal:** Series y Repeticiones numéricos normales.
-- **Cuenta-atrás:** Uno o varios ejercicios con una cuenta atrás. El reloj, en lugar de ir hacia adelante, irá en cuenta regresiva
+- **Regresiva:** Uno o varios ejercicios con una cuenta atrás. El reloj, en lugar de ir hacia adelante, irá en cuenta regresiva
